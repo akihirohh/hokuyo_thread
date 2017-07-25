@@ -37,10 +37,10 @@ int main(int argc, char *argv[])
 	//LIDAR
 	int previous_lidar_ts = 0, current_ts = 0;
   std::vector<long> lidar_readings (1080);
-	pthread_t thLidar;
-	lidarRead::thdata th_lidar;
-	th_lidar.b_loop = 0;
-  th_lidar.portname = "/dev/ttyACM0";
+	pthread_t thread_lidar;
+	lidarRead::thdata thdata_lidar;
+	thdata_lidar.b_loop = 0;
+  thdata_lidar.portname = "/dev/ttyACM0";
 
   //MISC
   int loop = 1;
@@ -51,8 +51,8 @@ int main(int argc, char *argv[])
   lidar_filename.append("_lidar_ts.txt");
   lidar_file.open(lidar_filename.c_str(), std::ios_base::out);
 
-  pthread_create (&thLidar, NULL, &lidarRead::lidarReading, &th_lidar);
-  while (!th_lidar.b_loop);
+  pthread_create (&thread_lidar, NULL, &lidarRead::lidarReading, &thdata_lidar);
+  while (!thdata_lidar.b_loop);
 
   gettimeofday(&t_start,NULL);
 
@@ -61,10 +61,10 @@ int main(int argc, char *argv[])
     timestamp = currentTime() + std::to_string(millis(t_start));
     try
     {
-      th_lidar.mtx.lock();
-      std::copy(th_lidar.d.begin(), th_lidar.d.end()-1, lidar_readings.begin());
-      current_ts = th_lidar.timestamp;
-      th_lidar.mtx.unlock();
+      thdata_lidar.mtx.lock();
+      std::copy(thdata_lidar.d.begin(), thdata_lidar.d.end()-1, lidar_readings.begin());
+      current_ts = thdata_lidar.timestamp;
+      thdata_lidar.mtx.unlock();
     }
     catch (...) { std::cout << "\n\nCouldn't copy latest LiDAR readings...\n\n";}
     
