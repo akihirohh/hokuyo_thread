@@ -59,6 +59,7 @@ namespace lidarRead
 		initLidar(3, arr0, urg0);
 		data->d = getLidar(urg0);
 		data->b_loop = 1;
+		data->d.pop_back();
 		data->mtx.unlock();
 
 		while(b_loop)
