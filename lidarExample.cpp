@@ -55,8 +55,8 @@ int main(int argc, char *argv[])
   lidar_file.open(lidar_filename.c_str(), std::ios_base::out);
   intensity_file.open(intensity_filename.c_str(), std::ios_base::out);
 
-  pthread_create (&thLidar, NULL, &lidarRead::lidarReading, &th_lidar);
-  while (!th_lidar.b_loop);
+  pthread_create (&thread_lidar, NULL, &lidarRead::lidarReading, &thdata_lidar);
+  while (!thdata_lidar.b_loop);
 
   gettimeofday(&t_start,NULL);
 
