@@ -3,7 +3,7 @@
   \brief Maintains connection information
   \author Satofumi KAMIMURA
 
-  $Id: Connection_information.cpp,v c5747add6615 2015/05/07 03:18:34 alexandr $
+  $Id$
 */
 
 #include "Connection_information.h"
@@ -31,7 +31,7 @@ struct Connection_information::pImpl
 #if defined(QRK_WINDOWS_OS)
         device_or_ip_name_ = "COM3";
 #elif defined(QRK_LINUX_OS)
-        device_or_ip_name_ = "/dev/ttyACM0";
+        device_or_ip_name_ = "192.168.0.10";
 #else
         device_or_ip_name_ = "/dev/tty.usbmodemfa131";
 #endif

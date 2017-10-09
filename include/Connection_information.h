@@ -6,7 +6,7 @@
   \brief Maintains connection information
   \author Satofumi KAMIMURA
 
-  $Id: Connection_information.h,v e5d1719877a2 2015/05/07 04:12:14 jun $
+  $Id$
 */
 
 #include "Urg_driver.h"

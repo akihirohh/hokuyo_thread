@@ -55,7 +55,11 @@ namespace lidarRead
 		std::vector<unsigned short> data_intensity;
 
 		data->mtx.lock();
-		char const *arr0[] = { "lidar", "-s", data->portname.c_str() };	
+
+		std::cout << "Lidar Thread conn_type: " << data->connection_type << " IP/port: " << data->ip_or_portname << std::endl;
+		
+		while(getchar()!='i');
+		char const *arr0[] = { "lidar", data->connection_type.c_str(), data->ip_or_portname.c_str() };	
 		initLidar(3, arr0, urg0);
 		getLidar(urg0, data->distance, data->intensity);
 		data->b_loop = 1;

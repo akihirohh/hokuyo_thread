@@ -5,6 +5,7 @@
 #include <mutex>
 #include <pthread.h>
 #include <vector>
+#include <cstring>
 
 #include <Urg_driver.h>
 #include <math_utilities.h>
@@ -21,7 +22,8 @@ namespace lidarRead
 		std::vector<long> distance;	//vector of read distances
 		std::vector<unsigned short> intensity;
 		int timestamp;
-		std::string portname;
+		std::string ip_or_portname;
+		std::string connection_type;
 		std::mutex mtx;
 	} thdata;
 	

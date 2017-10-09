@@ -41,7 +41,8 @@ int main(int argc, char *argv[])
 	pthread_t lidar_thread;
 	lidarRead::thdata lidar_data;
 	lidar_data.b_loop = 0;
-  lidar_data.portname = "/dev/ttyACM0";
+  lidar_data.ip_or_portname = "192.168.1.50";
+  lidar_data.connection_type = "-e";
 
   //MISC
   int loop = 1;
